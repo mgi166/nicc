@@ -1,17 +1,23 @@
 require 'httparty'
 
 module Nicc
-  class Info
+  class ExtInfo
     include ::HTTParty
 
-    EXT_URL = 'http://ext.nicovideo.jp/api/getthumbinfo/'
-
+    attr_reader :id
     def initialize(id)
-      @id = id
+      unless id =~ /\A(\d+)\Z/
+        raise ArgumentError, "`#{id}' is wrong format. Argument must convert to integer other than 0"
+      end
+      @id = "sm" + $1.to_s
     end
 
-    def get
-      response = ::HTTParty.get(EXT_URL)
+    def ext_url
+      'http://ext.nicovideo.jp'
+    end
+
+    def get(options={})
+      self.class.get("#{ext_url}/api/getthumbinfo/#{@id}", options)
     end
   end
 end
