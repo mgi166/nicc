@@ -59,7 +59,7 @@ describe Nicc::XML do
         context 'the value of "nicovideo_video_response"' do
           subject { nicc.parse['nicovideo_video_response'] }
           it { should be_instance_of Hash }
-          its(:keys) { should == ["status", "count", "video_info"] }
+          its(:keys) { should == ["status", 'count', 'video_info'] }
         end
 
         context 'the value of key "video_info" in the hash "nicovideo_video_response"' do
@@ -71,62 +71,62 @@ describe Nicc::XML do
 
       describe 'some values of key "video_info"' do
         describe 'in "video"' do
-          subject { nicc.parse['nicovideo_video_response']['video_info']["video"] }
+          subject { nicc.parse['nicovideo_video_response']['video_info']['video'] }
 
           it { should be_instance_of Hash }
 
-          it { should include "id"                          => "sm3393520" }
-          it { should include "deleted"                     => "0" }
-          it { should include "title"                       => "【アイドルマスター＋麻雀】im@s 雀姫伝　第一話 前編" }
-          it { should include "description"                 => "「何故プレイ動画にしなかったのか」と何度も...<br />技術的に未熟な...<br /><br />" }
-          it { should include "length_in_seconds"           => "667" }
-          it { should include "size_low"                    => "33276193" }
-          it { should include "movie_type"                  => "mp4" }
-          it { should include "thumbnail_url"               => "http://tn-skr1.smilevideo.jp/smile?i=3393520" }
-          it { should include "upload_time"                 => nil }
-          it { should include "first_retrieve"              => "2008-05-22T07:23:27+09:00" }
-          it { should include "default_thread"              => "1211408607" }
-          it { should include "view_counter"                => "424445" }
-          it { should include "mylist_counter"              => "10128" }
-          it { should include "option_flag_ichiba"          => "0" }
-          it { should include "option_flag_community"       => "0" }
-          it { should include "option_flag_domestic"        => "0" }
-          it { should include "option_flag_comment_type"    => "0" }
-          it { should include "option_flag_adult"           => "0" }
-          it { should include "option_flag_mobile"          => "0" }
-          it { should include "option_flag_economy_mp4"     => "1" }
-          it { should include "option_flag_middle_video"    => "0" }
-          it { should include "option_flag_mobile_ng_apple" => "0" }
+          it { should include 'id'                          => 'sm3393520' }
+          it { should include 'deleted'                     => '0' }
+          it { should include 'title'                       => '【アイドルマスター＋麻雀】im@s 雀姫伝　第一話 前編' }
+          it { should include 'description'                 => '「何故プレイ動画にしなかったのか」と何度も...<br />技術的に未熟な...<br /><br />' }
+          it { should include 'length_in_seconds'           => '667' }
+          it { should include 'size_low'                    => '33276193' }
+          it { should include 'movie_type'                  => 'mp4' }
+          it { should include 'thumbnail_url'               => 'http://tn-skr1.smilevideo.jp/smile?i=3393520' }
+          it { should include 'upload_time'                 => nil }
+          it { should include 'first_retrieve'              => '2008-05-22T07:23:27+09:00' }
+          it { should include 'default_thread'              => '1211408607' }
+          it { should include 'view_counter'                => '424445' }
+          it { should include 'mylist_counter'              => '10128' }
+          it { should include 'option_flag_ichiba'          => '0' }
+          it { should include 'option_flag_community'       => '0' }
+          it { should include 'option_flag_domestic'        => '0' }
+          it { should include 'option_flag_comment_type'    => '0' }
+          it { should include 'option_flag_adult'           => '0' }
+          it { should include 'option_flag_mobile'          => '0' }
+          it { should include 'option_flag_economy_mp4'     => '1' }
+          it { should include 'option_flag_middle_video'    => '0' }
+          it { should include 'option_flag_mobile_ng_apple' => '0' }
         end
 
         describe 'in "tags"' do
-          subject { nicc.parse['nicovideo_video_response']['video_info']["tags"] }
+          subject { nicc.parse['nicovideo_video_response']['video_info']['tags'] }
 
           it { should be_instance_of Hash }
-          its(:keys) { should == ["tag_info"] }
+          its(:keys) { should == ['tag_info'] }
 
           context 'the value of "tag_info"' do
-            subject { nicc.parse['nicovideo_video_response']['video_info']["tags"]["tag_info"] }
+            subject { nicc.parse['nicovideo_video_response']['video_info']['tags']['tag_info'] }
             it { should be_instance_of Array }
 
-            its([0]) { should == {"tag"=>"アイドルマスター",     "area"=>"jp"} }
-            its([1]) { should == {"tag"=>"アイマス雀荘リンク",   "area"=>"jp"} }
-            its([2]) { should == {"tag"=>"im@s架空戦記シリーズ", "area"=>"jp"} }
-            its([3]) { should == {"tag"=>"iM@s雀姫伝",           "area"=>"jp"} }
-            its([4]) { should == {"tag"=>"RAP_",                 "area"=>"jp"} }
+            its([0]) { should == {'tag'=>'アイドルマスター',     'area'=>'jp'} }
+            its([1]) { should == {'tag'=>'アイマス雀荘リンク',   'area'=>'jp'} }
+            its([2]) { should == {'tag'=>'im@s架空戦記シリーズ', 'area'=>'jp'} }
+            its([3]) { should == {'tag'=>'iM@s雀姫伝',           'area'=>'jp'} }
+            its([4]) { should == {'tag'=>'RAP_',                 'area'=>'jp'} }
           end
         end
 
         describe 'in thread' do
-          subject { nicc.parse['nicovideo_video_response']['video_info']["thread"] }
+          subject { nicc.parse['nicovideo_video_response']['video_info']['thread'] }
 
           it { should be_instance_of Hash }
-          its(:keys) { should == ["id", "public", "num_res", "community_id"] }
+          its(:keys) { should == ['id', 'public', 'num_res', 'community_id'] }
 
-          its(["id"])           { should == '1211408607' }
-          its(["public"])       { should == '1' }
-          its(["num_res"])      { should == '7948' }
-          its(["community_id"]) { should == nil }
+          its(['id'])           { should == '1211408607' }
+          its(['public'])       { should == '1' }
+          its(['num_res'])      { should == '7948' }
+          its(['community_id']) { should == nil }
         end
       end
     end
