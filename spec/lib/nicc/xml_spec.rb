@@ -72,6 +72,7 @@ describe Nicc::XML do
       describe 'some values of key "video_info"' do
         describe 'in "video"' do
           subject { nicc.parse['nicovideo_video_response']['video_info']["video"] }
+
           it { should be_instance_of Hash }
 
           it { should include "id"                          => "sm3393520" }
@@ -96,6 +97,36 @@ describe Nicc::XML do
           it { should include "option_flag_economy_mp4"     => "1" }
           it { should include "option_flag_middle_video"    => "0" }
           it { should include "option_flag_mobile_ng_apple" => "0" }
+        end
+
+        describe 'in "tags"' do
+          subject { nicc.parse['nicovideo_video_response']['video_info']["tags"] }
+
+          it { should be_instance_of Hash }
+          its(:keys) { should == ["tag_info"] }
+
+          context 'the value of "tag_info"' do
+            subject { nicc.parse['nicovideo_video_response']['video_info']["tags"]["tag_info"] }
+            it { should be_instance_of Array }
+
+            its([0]) { should == {"tag"=>"アイドルマスター",     "area"=>"jp"} }
+            its([1]) { should == {"tag"=>"アイマス雀荘リンク",   "area"=>"jp"} }
+            its([2]) { should == {"tag"=>"im@s架空戦記シリーズ", "area"=>"jp"} }
+            its([3]) { should == {"tag"=>"iM@s雀姫伝",           "area"=>"jp"} }
+            its([4]) { should == {"tag"=>"RAP_",                 "area"=>"jp"} }
+          end
+        end
+
+        describe 'in thread' do
+          subject { nicc.parse['nicovideo_video_response']['video_info']["thread"] }
+
+          it { should be_instance_of Hash }
+          its(:keys) { should == ["id", "public", "num_res", "community_id"] }
+
+          its(["id"])           { should == '1211408607' }
+          its(["public"])       { should == '1' }
+          its(["num_res"])      { should == '7948' }
+          its(["community_id"]) { should == nil }
         end
       end
     end
