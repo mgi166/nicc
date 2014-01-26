@@ -16,8 +16,8 @@ module Nicc
       'http://ext.nicovideo.jp'
     end
 
-    def get(options={})
-      self.class.get("#{ext_url}/api/getthumbinfo/#{@id}", options)
+    def get(options={}, &block)
+      self.class.get("#{ext_url}/api/getthumbinfo/#{@id}", options, &block)
     end
   end
 end

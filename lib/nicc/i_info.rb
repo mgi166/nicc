@@ -20,9 +20,9 @@ module Nicc
       {:query => { :v => @id }}
     end
 
-    def get(options={})
+    def get(options={}, &block)
       o = default_option.merge(options)
-      self.class.get("#{i_url}/v3/video.array", o)
+      self.class.get("#{i_url}/v3/video.array", o, &block)
     end
   end
 end
