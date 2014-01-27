@@ -19,20 +19,22 @@ module Nicc
         @merge = i_hash['nicovideo_video_response']['video_info']['video']
           .reverse_merge(ext_hash['nicovideo_thumb_response']['thumb'])
           .merge(i_hash['nicovideo_video_response']['video_info']['thread'])
-          .tap do |merge|
+          .tap do |x|
           # key 'id' is commonly used, so change key name 'thread_id'
-          merge['thread_id'] = merge.delete('id')
+          x['thread_id'] = x.delete('id')
         end
       when 'layer'
         @merge = {}.tap do |merge|
           merge[:info] = i_hash['nicovideo_video_response']['video_info']['video']
             .reverse_merge(ext_hash['nicovideo_thumb_response']['thumb'])
+            .delete_if {|key| key == 'id'}
           merge[:thread] = i_hash['nicovideo_video_response']['video_info']['thread']
         end
       end
     end
 
-    def reverse_merge_info
+    # TODO: test & implementation
+    def reverse_merge
       case @options[:thread_type]
       when 'layer'
         @merge.tap do |merge|

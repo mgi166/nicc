@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Nicc::Response do
   let(:response) { described_class.new(ext_hash, i_hash, options) }
 
-  describe '#merge_info' do
+  describe '#default_merge' do
     let(:ext_xml)  { File.read(File.join('spec', 'data', 'xml', 'sample01.xml')) }
     let(:ext_hash) { Nicc::XML.new(ext_xml).parse }
 
@@ -17,9 +17,6 @@ describe Nicc::Response do
 
         describe 'hash should have key & value' do
           subject { response.default_merge }
-
-          it { should be_instance_of Hash }
-
 
           its(['video_id']) { should == 'sm3393520' }
           its(['title']) { should == '【アイドルマスター＋麻雀】im@s 雀姫伝　第一話 前編' }
@@ -68,9 +65,6 @@ describe Nicc::Response do
         describe 'hash should have key & value' do
           subject { response.default_merge[:info] }
 
-          it { should be_instance_of Hash }
-
-          its(['id']) { should == 'sm3393520' }
           its(['video_id']) { should == 'sm3393520' }
           its(['title']) { should == '【アイドルマスター＋麻雀】im@s 雀姫伝　第一話 前編' }
           its(['description']) { should == '「何故プレイ動画にしなかったのか」と何度も...<br />技術的に未熟な...<br /><br />' }
@@ -109,8 +103,6 @@ describe Nicc::Response do
 
         describe 'hash should have key & value' do
           subject { response.default_merge[:thread] }
-
-          it { should be_instance_of Hash }
 
           its(['id'])           { should == '1211408607' }
           its(['public'])       { should == '1' }
