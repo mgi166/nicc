@@ -8,7 +8,16 @@ module Nicc
     def initialize(ext_hash, i_hash, options)
       @ext_hash = ext_hash
       @i_hash   = i_hash
-      @options  = { :thread_type => 'flat' }.merge(options)
+      @options  = { :thread_type => 'flat', :priority => 'i' }.merge(options)
+    end
+
+    def merge
+      case @options[:priority]
+      when 'i'
+        default_merge
+      when 'e'
+        reverse_merge
+      end
     end
 
     def default_merge

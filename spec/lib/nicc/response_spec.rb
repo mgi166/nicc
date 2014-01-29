@@ -120,5 +120,25 @@ describe Nicc::Response do
       end
     end
   end
+
+  describe '#merge' do
+    context 'the default case that options has :priority = "i"' do
+      let(:options) { {:priority => 'i'} }
+
+      it '#default_mergre should be called' do
+        response.should_receive(:default_merge)
+        response.merge
+      end
+    end
+
+    context 'the case that options has :priority => "e"' do
+      let(:options) { {:priority => 'e'} }
+
+      it '#reverse_merge should be called' do
+        response.should_receive(:reverse_merge)
+        response.merge
+      end
+    end
+  end
 end
 
