@@ -1,25 +1,6 @@
 require 'spec_helper'
 
 describe Nicc::IInfo do
-  describe '#new' do
-    subject { described_class.new(id) }
-
-    context 'correct an argument' do
-      let(:id) { '123' }
-      its(:id) { should == 'sm123' }
-    end
-
-    context 'wrong an argument' do
-      let(:id) { 'abcd' }
-
-      it 'should raise ArgumentError' do
-        expect {
-          subject
-        }.to raise_error ArgumentError, "`abcd' is wrong format. Argument must convert to integer other than 0"
-      end
-    end
-  end
-
   describe '#get' do
     let(:i_info) { described_class.new(id) }
     let(:id) { '123' }

@@ -4,12 +4,8 @@ module Nicc
   class IInfo
     include ::HTTParty
 
-    attr_reader :id
     def initialize(id)
-      unless id =~ /\A(\d+)\Z/
-        raise ArgumentError, "`#{id}' is wrong format. Argument must convert to integer other than 0"
-      end
-      @id = "sm" + $1.to_s
+      @id = id
     end
 
     def i_url
