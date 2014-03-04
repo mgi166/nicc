@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Nicc::IInfo do
   describe '#get' do
     let(:i_info) { described_class.new(id) }
-    let(:id) { '123' }
+    let(:id) { 'sm123' }
 
     context "the case that don't spcify options" do
       let(:options) { {:query => { :v => 'sm456', :spec => 'test' }} }

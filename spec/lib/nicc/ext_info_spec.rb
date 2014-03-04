@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Nicc::ExtInfo do
   describe '#get' do
     let(:ext_info) { described_class.new(id) }
-    let(:id) { '123' }
+    let(:id) { 'sm123' }
 
     context "the case that don't spcify options" do
       let(:options) { {:query => { :hoge => 123, :fuga => 456 }} }
