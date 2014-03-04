@@ -6,6 +6,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rubygems'
 require 'rspec'
+require 'webmock/rspec'
 
 Dir.glob(File.join(File.dirname(__FILE__), '..', 'lib', '**/*.rb')).each{|f| require f }
 

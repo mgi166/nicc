@@ -30,4 +30,21 @@ describe Nicc::Client do
       end
     end
   end
+
+  describe '#get' do
+    let(:client) { described_class.new(id, options) }
+    let(:id) { '12345' }
+    let(:options) { {} }
+
+    before do
+      stub_request(:get, 'http://i.nicovideo.jp/v3/video.array?v=sm12345')
+      stub_request(:get, 'http://ext.nicovideo.jp/api/getthumbinfo/sm12345')
+    end
+
+    let(:response01) { File.read(File.join('spec', 'data', 'xml', 'sample01.xml')) }
+    let(:response02) { File.read(File.join('spec', 'data', 'xml', 'sample02.xml')) }
+
+    it '' do
+    end
+  end
 end
