@@ -1,4 +1,5 @@
 require 'httparty'
+require 'tapp'
 
 module Nicc
   class Client
@@ -13,11 +14,11 @@ module Nicc
       @options = options
     end
 
-    def get(options, &block)
-      e = Nicc::ExtInfo.new(@id, options)
-      i = Nicc::IInfo.new(@id, options)
-
+    def get
       begin
+        e = Nicc::ExtInfo.new(@id)
+        i = Nicc::IInfo.new(@id)
+
         e_response = e.get
         i_response = i.get
 
@@ -28,7 +29,6 @@ module Nicc
 
         block_given? ? (yield response) : response
       rescue => e
-        puts e.message
       end
     end
   end
