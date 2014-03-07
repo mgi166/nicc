@@ -22,13 +22,13 @@ module Nicc
         e_response = e.get
         i_response = i.get
 
-        e_hash = XML.new(e_response).parse
-        i_hash = XML.new(i_response).parse
+        e_hash = XML.new(e_response.body).parse
+        i_hash = XML.new(i_response.body).parse
 
         response = Response.new(e_hash, i_hash, @options).merge
 
         block_given? ? (yield response) : response
-      rescue => e
+      rescue
       end
     end
   end
