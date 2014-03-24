@@ -1,11 +1,12 @@
 require 'httparty'
 require 'tapp'
+require 'active_support/core_ext'
 
 module Nicc
   class Client
 
     attr_reader :id
-    def initialize(id, options)
+    def initialize(id, options={})
       if id =~ /^sm(\d+)/ or id =~ /\A(\d+)\Z/
         @id = "sm" + $1
       else
@@ -14,22 +15,21 @@ module Nicc
       @options = options
     end
 
-    def get
-      begin
-        e = Nicc::ExtInfo.new(@id)
-        i = Nicc::IInfo.new(@id)
+    def get(options={})
+      option = options.blank? ? @options : options
 
-        e_response = e.get
-        i_response = i.get
+      e = Nicc::ExtInfo.new(@id)
+      i = Nicc::IInfo.new(@id)
 
-        e_hash = XML.new(e_response.body).parse
-        i_hash = XML.new(i_response.body).parse
+      e_response = e.get
+      i_response = i.get
 
-        response = Response.new(e_hash, i_hash, @options).merge
+      e_hash = XML.new(e_response.body).parse
+      i_hash = XML.new(i_response.body).parse
 
-        block_given? ? (yield response) : response
-      rescue
-      end
+      response = Response.new(e_hash, i_hash, option).merge
+
+      block_given? ? (yield response) : response
     end
   end
 end
